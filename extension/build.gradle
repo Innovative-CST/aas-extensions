@@ -2,18 +2,35 @@ plugins {
 	id("application")
 }
 
+def localPropsFile = rootProject.file("local.properties")
+def properties = new Properties()
+def outputDirectory = ""
+
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { inputStream ->
+        properties.load(inputStream)
+    }
+}
+
 application {
     mainClassName = 'com.icst.android.appstudio.ExtensionGenerator'
 }
 
 task generateExtensions(type: JavaExec) {
-    dependsOn("assemble")
     File outputDir = new File("${buildDir}/extensions");
     outputDir.mkdirs();
 	
-	classpath = sourceSets.main.runtimeClasspath
+    classpath = sourceSets.main.runtimeClasspath
     main = 'com.icst.android.appstudio.ExtensionGenerator'
-    args = [outputDir.getAbsolutePath()]
+
+    if (properties.getProperty('outputDirectory') != null) {
+        args = [properties.getProperty('outputDirectory')]
+        println "Setting up output directory to ${properties.getProperty('outputDirectory')} from local.properties"
+    } else {
+        args = [outputDir.getAbsolutePath()]
+        println "Setting up output directory to ${outputDir.getAbsolutePath()}"
+        println "For customizing output directory of extensions then add outputDirectory=\"yourOutputDirectory\" to local.properties"
+    }
 }
 
 dependencies {
@@ -28,5 +45,11 @@ sourceSets {
         resources {
             srcDirs = ['src/main/resources']
         }
+    }
+}
+
+project.afterEvaluate {
+    tasks.named('assemble').configure {
+        dependsOn generateExtensions
     }
 }
