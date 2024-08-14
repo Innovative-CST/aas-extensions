@@ -1,0 +1,32 @@
+plugins {
+	id("application")
+}
+
+application {
+    mainClassName = 'com.icst.android.appstudio.ExtensionGenerator'
+}
+
+task generateExtensions(type: JavaExec) {
+    dependsOn("assemble")
+    File outputDir = new File("${buildDir}/extensions");
+    outputDir.mkdirs();
+	
+	classpath = sourceSets.main.runtimeClasspath
+    main = 'com.icst.android.appstudio.ExtensionGenerator'
+    args = [outputDir.getAbsolutePath()]
+}
+
+dependencies {
+    implementation project(":library")
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs = ['src/main/java']
+        }
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
