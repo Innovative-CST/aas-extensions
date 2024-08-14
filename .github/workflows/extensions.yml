@@ -25,7 +25,7 @@ jobs:
         run: chmod +x ./gradlew
 
       - name: Build debug extension files
-        run: ./gradlew generateExtensions
+        run: ./gradlew assemble
           
       - name: Upload extension files
         uses: actions/upload-artifact@v3
