@@ -8,7 +8,7 @@ You can also build extensions for Android AppStudio.
 
 # Entry point
 The entry point for generating extension file is `extension/src/main/java/com/icst/android/appsstudio/ExtensionGenerator.java`.
-When you will execute this project with task `generateExtensions` then gradle will execute `ExtensionGenerator.java`.
+When you will execute this project with task `assemble` then gradle will execute `ExtensionGenerator.java`.
 In `ExtensionGenerator.java` you will have to pass the object of `com.icst.android.appstudio.models.ExtensionBundle` so gradle can generate extension.
 
 > [!NOTE]
