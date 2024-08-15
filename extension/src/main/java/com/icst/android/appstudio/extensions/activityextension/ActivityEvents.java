@@ -192,6 +192,31 @@ public class ActivityEvents {
     defineEventText.setValue("onActivityCreate");
 
     eventDefinationLayerTextLayer.add(defineEventText);
+
+    BlockModel bundle = new BlockModel();
+    bundle.setColor("#5533ff");
+    bundle.setRawCode("savedInstanceState");
+    bundle.setReturns(new String[] {"android.os.Bundle"});
+    bundle.setDragAllowed(true);
+    bundle.setBlockType(BlockModel.Type.number);
+
+    ArrayList<BlockLayerModel> bundleBlockLayerModels = new ArrayList<BlockLayerModel>();
+
+    BlockFieldLayerModel bundleBlockDefinationLayer = new BlockFieldLayerModel();
+
+    ArrayList<BlockFieldModel> bundleBlockDefinationLayerTextLayer =
+        new ArrayList<BlockFieldModel>();
+
+    BlockFieldModel bundleText = new BlockFieldModel();
+    bundleText.setValue("bundle");
+
+    bundleBlockDefinationLayerTextLayer.add(bundleText);
+
+    bundleBlockDefinationLayer.setBlockFields(bundleBlockDefinationLayerTextLayer);
+    bundleBlockLayerModels.add(bundleBlockDefinationLayer);
+    bundle.setBlockLayerModel(bundleBlockLayerModels);
+
+    eventDefinationLayerTextLayer.add(bundle);
     eventDefinationLayer.setBlockFields(eventDefinationLayerTextLayer);
 
     blockLayerModels.add(eventDefinationLayer);
