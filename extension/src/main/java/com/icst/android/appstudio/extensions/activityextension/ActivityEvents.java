@@ -198,7 +198,7 @@ public class ActivityEvents {
     bundle.setRawCode("savedInstanceState");
     bundle.setReturns(new String[] {"android.os.Bundle"});
     bundle.setDragAllowed(true);
-    bundle.setBlockType(BlockModel.Type.number);
+    bundle.setBlockType(BlockModel.Type.variable);
 
     ArrayList<BlockLayerModel> bundleBlockLayerModels = new ArrayList<BlockLayerModel>();
 
