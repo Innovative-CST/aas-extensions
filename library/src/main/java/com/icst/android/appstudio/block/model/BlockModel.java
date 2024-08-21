@@ -98,6 +98,7 @@ public class BlockModel extends BlockValueFieldModel implements Serializable, Cl
     public static final int defaultBlock = 0;
     public static final int defaultBoolean = 1;
     public static final int number = 2;
+    public static final int variable = 3;
   }
 
   public int getBlockType() {
